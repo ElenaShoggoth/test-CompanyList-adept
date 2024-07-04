@@ -11,11 +11,13 @@ interface Company {
 interface CompanyState {
   companies: Company[];
   allSelected: boolean;
+  loading: boolean;
 }
 
 const initialState: CompanyState = {
   companies: [],
   allSelected: false,
+  loading: false,
 };
 
 const companySlice = createSlice({
@@ -49,8 +51,30 @@ const companySlice = createSlice({
     loadCompanies: (state, action: PayloadAction<Company[]>) => {
       state.companies = action.payload;
     },
+    loadMoreCompaniesStart: (state) => {
+      state.loading = true;
+    },
+    loadMoreCompaniesSuccess: (state, action: PayloadAction<Company[]>) => {
+      state.companies = [...state.companies, ...action.payload];
+      state.loading = false;
+    },
   },
 });
 
-export const { addCompany, updateCompany, deleteCompanies, toggleSelectCompany, toggleSelectAll, loadCompanies } = companySlice.actions;
+export const {
+  addCompany,
+  updateCompany,
+  deleteCompanies,
+  toggleSelectCompany,
+  toggleSelectAll,
+  loadCompanies,
+  loadMoreCompaniesStart,
+  loadMoreCompaniesSuccess,
+} = companySlice.actions;
+
+
+export const selectCompanies = (state: any) => state.companies.companies;
+export const selectAllSelected = (state: any) => state.companies.allSelected;
+export const selectLoading = (state: any) => state.companies.loading;
+
 export default companySlice.reducer;

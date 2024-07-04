@@ -1,0 +1,94 @@
+
+.row {
+  background-color: white;
+  transition: background-color 0.3s ease;
+
+  position: relative; 
+
+  &.selected {
+    background-color: #bbc5dc;
+  }
+
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+
+    input[type="text"] {
+      width: 95%;
+      padding: 8px;
+      border: none;
+      background-color: transparent;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .checkbox-container {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 12px;
+      cursor: pointer;
+  
+      input[type="checkbox"] {
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+  
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 15px;
+        width: 15px;
+        background-color: #ffffff;
+        border-radius: 4px;
+        border: 1px solid rgb(105, 105, 105);
+  
+        &:after {
+          content: "";
+          position: absolute;
+          display: none;
+          left: 3px;
+          top: 0px;
+          width: 6px;
+          height: 8px;
+          border: solid rgb(105, 105, 105);
+          border-width: 0 3px 3px 0;
+          transform: rotate(45deg);
+          
+        }
+      }
+  
+      input:checked + .checkmark {
+        background-color: #ffffff;
+      }
+  
+      input:checked + .checkmark:after {
+        display: block;
+      }
+    }
+  }
+}
+
+.row:hover .edit_icon {
+  display: inline; 
+}
+
+.edit_icon {
+  display: none; 
+  position: absolute;
+  right: 10px; 
+  top: 4px;
+  cursor: pointer;
+  color: #989898;
+}
+
+input {
+  padding-right: 20px; 
+}
+
+input:hover + .edit_icon {
+  color: #000; 
+}

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { loadCompanies } from "./features/company/companySlice";
 import { AddCompanyForm } from "./components/AddCompanyForm";
 import { CompanyTable } from "./components/CompanyTable";
+import "./App.css";
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,10 +19,14 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <div style={{ width: "90%", margin: "0 auto" }}>
-      <h1>Список компаний</h1>
-      <AddCompanyForm />
-      <CompanyTable />
+    <div className="app-container">
+      <div className="app-content">
+        <div className="app-header">
+          <h1 className="app-title">Список компаний</h1>
+          <AddCompanyForm />
+        </div>
+        <CompanyTable />
+      </div>
     </div>
   );
 };
